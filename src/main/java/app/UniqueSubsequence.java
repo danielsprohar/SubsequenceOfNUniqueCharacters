@@ -9,7 +9,7 @@ import java.util.Objects;
 import java.util.Set;
 
 public class UniqueSubsequence {
-    public static final int NUMBER_OF_UNIQUE_CHARACTERS = 4;
+    public static final int NUMBER_OF_UNIQUE_CHARACTERS = 2;
 
     public static void main(String[] args) {
         final String sequence = "ABAACACAACDA";
@@ -54,7 +54,10 @@ public class UniqueSubsequence {
         }
 
         System.out.println("For the given sequence: " + sequence + ",");
-        System.out.println("the longest subsequence which contains two unique characters is: " + maxSubsequence);
+        System.out.format(
+                "the longest subsequence which contains %s unique characters is: %s%n",
+                NUMBER_OF_UNIQUE_CHARACTERS,
+                maxSubsequence);
     }
 
     /**
