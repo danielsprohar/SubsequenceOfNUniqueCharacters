@@ -9,6 +9,8 @@ import java.util.Objects;
 import java.util.Set;
 
 public class UniqueSubsequence {
+    public static final int NUMBER_OF_UNIQUE_CHARACTERS = 2;
+
     public static void main(String[] args) {
         final String sequence = "ABAACACAACDA";
         final Set<Character> set = new HashSet<>();
@@ -27,7 +29,7 @@ public class UniqueSubsequence {
 
                 // Check the next character
                 c = sequence.charAt(j + 1);
-                if (set.size() == 2 && !set.contains(c)) {
+                if (set.size() == NUMBER_OF_UNIQUE_CHARACTERS && !set.contains(c)) {
                     // End of subsequence
                     maxSubsequence = getMaxString(maxSubsequence, subsequenceBuilder.toString());
                     subsequenceBuilder.delete(0, subsequenceBuilder.length());
@@ -43,6 +45,7 @@ public class UniqueSubsequence {
 
     /**
      * Returns the longest string of the given two strings.
+     *
      * @param s1 String 1
      * @param s2 String 2
      * @return The longest string.
