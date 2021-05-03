@@ -9,12 +9,13 @@ import java.util.Objects;
 import java.util.Set;
 
 public class UniqueSubsequence {
-    public static final int NUMBER_OF_UNIQUE_CHARACTERS = 2;
+    public static final int NUMBER_OF_UNIQUE_CHARACTERS = 4;
 
     public static void main(String[] args) {
         final String sequence = "ABAACACAACDA";
+        final String defaultValue = sequence.substring(0, 1);
         final Set<Character> set = new HashSet<>();
-        String maxSubsequence = sequence.substring(0, 1);
+        String maxSubsequence = defaultValue;
         StringBuilder subsequenceBuilder = new StringBuilder(sequence.length());
         Character c;
 
@@ -22,13 +23,14 @@ public class UniqueSubsequence {
             c = sequence.charAt(i);
             subsequenceBuilder.append(c);
             set.add(c);
+
             for (int j = i + 1; j < sequence.length() - 1; j++) {
                 c = sequence.charAt(j);
                 subsequenceBuilder.append(c);
                 set.add(c);
 
-                // Check the next character
                 c = sequence.charAt(j + 1);
+                // NOTE: This will never execute if the longest subsequence is the sequence itself.
                 if (set.size() == NUMBER_OF_UNIQUE_CHARACTERS && !set.contains(c)) {
                     // End of subsequence
                     maxSubsequence = getMaxString(maxSubsequence, subsequenceBuilder.toString());
@@ -37,6 +39,18 @@ public class UniqueSubsequence {
                     break;
                 }
             }
+
+            // If the length of the current maxSubsequence is greater than or equal
+            // to half the length of the sequence,
+            // then we are done searching.
+            if (maxSubsequence.length() >= sequence.length()) {
+                break;
+            }
+        }
+
+        // Check if the longest subsequence is the sequence itself.
+        if (maxSubsequence.equals(defaultValue)) {
+            maxSubsequence = sequence;
         }
 
         System.out.println("For the given sequence: " + sequence + ",");
