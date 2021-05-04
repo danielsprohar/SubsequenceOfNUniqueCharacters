@@ -43,7 +43,7 @@ public class UniqueSubsequence {
             // If the length of the current maxSubsequence is greater than or equal
             // to half the length of the sequence,
             // then we are done searching.
-            if (maxSubsequence.length() >= sequence.length()) {
+            if (maxSubsequence.length() >= sequence.length() / 2) {
                 break;
             }
         }
